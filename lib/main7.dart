@@ -12,15 +12,16 @@ class MyApp7 extends StatefulWidget {
 
 class _MyApp7State extends State<MyApp7> {
   List<Widget> widgets = [];
+  int counter = 1;
 
-  _MyApp7State() {
-    for (int i = 0; i < 50; i++) {
-      widgets.add(Text(
-        "Data ke-$i",
-        style: const TextStyle(fontSize: 40),
-      ));
-    }
-  }
+  // _MyApp7State() {
+  //   for (int i = 0; i < 50; i++) {
+  //     widgets.add(Text(
+  //       "Data ke-$i",
+  //       style: const TextStyle(fontSize: 40),
+  //     ));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +34,25 @@ class _MyApp7State extends State<MyApp7> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
+              children: [
                 ElevatedButton(
-                  onPressed: null,
-                  child: Text("Tambah Data"),
+                  onPressed: () {
+                    setState(() {
+                      widgets.add(Text("Data ke-$counter",
+                          style: const TextStyle(fontSize: 35)));
+                      counter++;
+                    });
+                  },
+                  child: const Text("Tambah Data"),
                 ),
                 ElevatedButton(
-                  onPressed: null,
-                  child: Text("Hapus Data"),
+                  onPressed: () {
+                    setState(() {
+                      widgets.removeLast();
+                      counter--;
+                    });
+                  },
+                  child: const Text("Hapus Data"),
                 )
               ],
             ),
